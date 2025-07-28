@@ -5,6 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
+import com.finwise.authservice.entity.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +24,11 @@ public class JwtService {
         return Algorithm.HMAC256(jwtSecret);
     }
 
-    public String generateToken(String email) {
+    public String generateToken(User user) {
         return JWT.create()
-                .withSubject(email)
+                .withSubject(user.getEmail()) // you could also use user.getUserId()
+                .withClaim("userId", user.getUserId())
+                .withClaim("role", user.getRole())
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + jwtExpirationMs))
                 .sign(getSigningAlgorithm());
