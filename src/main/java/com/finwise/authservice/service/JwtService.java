@@ -23,7 +23,7 @@ public class JwtService {
     private Algorithm getSigningAlgorithm() {
         return Algorithm.HMAC256(jwtSecret);
     }
-
+    
     public String generateToken(User user) {
         return JWT.create()
                 .withSubject(user.getEmail()) // you could also use user.getUserId()
