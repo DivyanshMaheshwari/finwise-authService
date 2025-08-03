@@ -4,6 +4,7 @@ import com.finwise.authservice.dto.AuthResponse;
 import com.finwise.authservice.dto.LoginRequest;
 import com.finwise.authservice.dto.RegisterRequest;
 import com.finwise.authservice.entity.User;
+import com.finwise.authservice.enums.Role;
 import com.finwise.authservice.exception.InvalidCredentialsException;
 import com.finwise.authservice.exception.UserAlreadyExistsException;
 import com.finwise.authservice.exception.UserNotFoundException;
@@ -40,7 +41,7 @@ public class AuthService {
                 .email(request.getEmail())
 //                .password(passwordEncoder.encode(request.getPassword()))
                 .password(request.getPassword())
-                .role(request.getRole())
+                .role(Role.USER)
                 .build();
 
         userRepository.save(user);

@@ -1,5 +1,6 @@
 package com.finwise.authservice.entity;
 
+import com.finwise.authservice.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,8 +28,8 @@ public class User {
     private String email;
 
     private String password;
-
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     // Getters and Setters can stay or be removed (Lombok already handles it)
 }

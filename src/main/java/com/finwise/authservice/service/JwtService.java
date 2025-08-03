@@ -26,9 +26,9 @@ public class JwtService {
     
     public String generateToken(User user) {
         return JWT.create()
-                .withSubject(user.getEmail()) // you could also use user.getUserId()
+                .withSubject(user.getEmail())
                 .withClaim("userId", user.getUserId())
-                .withClaim("role", user.getRole())
+                .withClaim("role", user.getRole().name())
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + jwtExpirationMs))
                 .sign(getSigningAlgorithm());
