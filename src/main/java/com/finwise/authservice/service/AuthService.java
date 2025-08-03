@@ -66,7 +66,6 @@ public class AuthService {
                 .lastName(user.getLastName())
                 .build();
     }
-
     private String generateUniqueUserId(String firstName, String lastName) {
         String prefix = (firstName.substring(0, 1) + lastName.substring(0, 1)).toLowerCase();
         String suffix;
